@@ -4,21 +4,25 @@ import os
 
 from geopy.distance import vincenty
 
+from tmap.models import ChargingStation
+
 
 def tmap(request):
-    pA_x = 126.98217734415019
-    pA_y = 37.56468648536046
-    pB_x = 129.07579349764512
-    pB_y = 37.17883196265564
-    point1 = (pA_x, pA_y)
-    point2 = (pB_x, pB_y)
-    distance = vincenty(point1, point2).meters
+    # pA_x = 126.98217734415019
+    # pA_y = 37.56468648536046
+    # pB_x = 129.07579349764512
+    # pB_y = 37.17883196265564
+    # point1 = (pA_x, pA_y)
+    # point2 = (pB_x, pB_y)
+    # distance = vincenty(point1, point2).meters
+    charging_stations = ChargingStation.objects.all()
     api_key = os.environ.get("TMAP_API_KEY")
     return render(
         request,
         "tmap.html",
         context={
-            "distance": distance,
+            # "distance": distance,
             "api_key": api_key,
+            "charging_stations": charging_stations,
         }
     )

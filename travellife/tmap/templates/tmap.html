@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <title>간단한 지도 표시하기</title>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
-    <script src="https://apis.skplanetx.com/tmap/js?version=1&format=javascript&appKey=f192ba50-f7d1-3b05-9973-0cd29e84c8e0"></script>
+    <script src="https://apis.skplanetx.com/tmap/js?version=1&format=javascript&appKey={{ api_key }}"></script>
 </head>
 <body>
 
@@ -14,12 +14,25 @@
 <p>{{ distance}}m</p>
 
 <div id="map_div"></div>
+{% for station in charging_stations %}
+<a class="station" data-latitude="{{ station.latitude }}" data-longitude="{{ station.longitude }}">name: {{ station.name }}</a>
+<ul>
+    <li>address: {{ station.address}}</li>
+</ul>
+{% endfor %}
 
 <script>
 //초기화 함수
 $( document ).ready(function() {
     initTmap();
-    searchRoute();
+
+    $(".station").click(function() {
+        var latitude = $(this).data("latitude");
+        var longitude = $(this).data("longitude");
+        removeTmap();
+        initTmap();
+        searchRoute(latitude, longitude);
+    });
 });
 function initTmap(){
     centerLL = new Tmap.LonLat(14145677.4, 4511257.6);
@@ -29,19 +42,23 @@ function initTmap(){
                         transitionEffect:"resize",
                         animation:true
                     }); 
-    searchRoute();
 };
+
+function removeTmap(){
+    map.destroy();
+};
+
 //경로 정보 로드
-function searchRoute(){
+function searchRoute(endX, endY){
     var routeFormat = new Tmap.Format.KML({extractStyles:true, extractAttributes:true});
-//    var startX = 14129105.461214;
-//    var startY = 4517042.1926406;
-//    var endX = 14135591.321771959;
-//    var endY = 4518111.822510956;
+    //var startX = 14129105.461214;
+    //var startY = 4517042.1926406;
+    //var endX = 14135591.321771959;
+    //var endY = 4518111.822510956;
     var startX = 126.98217734415019;
     var startY = 37.56468648536046;
-    var endX = 129.07579349764512;
-    var endY = 37.17883196265564;
+    //var endX = 129.07579349764512;
+    //var endY = 37.17883196265564;
     var reqCoordType = "WGS84GEO";
     var urlStr = "https://apis.skplanetx.com/tmap/routes?version=1&format=xml";
     urlStr += "&reqCoordType="+reqCoordType;
@@ -62,6 +79,7 @@ function searchRoute(){
 function onDrawnFeatures(e){
     map.zoomToExtent(this.getDataExtent());
 }
+
 </script>
 </body>
 </html>
