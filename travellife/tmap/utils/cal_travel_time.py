@@ -1,7 +1,7 @@
 import os
+import json
 
 import requests
-import json
 
 
 def cal_travel_time(startX, startY, endX, endY):
@@ -22,5 +22,9 @@ def cal_travel_time(startX, startY, endX, endY):
         data=data,
     )
     json_data = json.loads(response.text)
-    travel_time = json_data.get("features")[0].get("properties").get("totalTime")
-    return travel_time
+    try:
+        travel_seconds = json_data.get("features")[0].get("properties").get("totalTime")
+        travel_minutes = int(travel_seconds / 60)
+        return travel_minutes
+    except TypeError:
+        return

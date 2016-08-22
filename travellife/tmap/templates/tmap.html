@@ -24,6 +24,18 @@
 <span id="guide" style="color:#999"></span>
 <input id="search_location" type="submit" value="좌표찾기"><br>
 
+<select class="form-control">
+   <option value="60">1시간</option>
+   <option value="90">1시간 30분</option>
+   <option value="120">2시간</option>
+   <option value="150">2시간 30분</option>
+   <option value="180">3시간</option>
+   <option value="210">3시간 30분</option>
+   <option value="240">4시간</option>
+   <option value="270">4시간 30분</option>
+   <option value="300">5시간</option>
+</select>
+
 {% for station in charging_stations %}
 <a class="station" data-latitude="{{ station.latitude }}" data-longitude="{{ station.longitude }}">name: {{ station.name }}</a>
 <ul>
@@ -92,6 +104,8 @@ function initTmap(){
                         animation:true
                     }); 
     center = new Tmap.LonLat(127.0631412, 37.5150341);
+    center.transform("EPSG:4326", "EPSG:3857");
+    map.setCenter(center);
 };
 
 function removeTmap(){
