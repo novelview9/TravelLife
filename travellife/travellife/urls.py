@@ -7,6 +7,7 @@ from tour.views import *
 from intro.views import *
 from main.views import *
 
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^tmap/$', TmapView.as_view()),
