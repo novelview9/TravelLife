@@ -1,7 +1,7 @@
 from django.views.generic import View
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from django.contrib.auth import login
+from django.contrib.auth import authenticate, login
 
 
 class IntroView(View):
@@ -15,29 +15,28 @@ class IntroView(View):
         )
 
     def post(self, request, *args, **kwargs):
-        username = request.POST.get("username")
-        try:
-            user = User.objects.get(username=username)
+        username = request.POST.get("username", )
+        password = "1234"
+        user = authenticate(
+                username=username,
+                password=password,
+        )
 
-            if user:
-                login(request, user)
-
-                return render(
-                        request,
-                        "intro/intro.html",
-                        context={},
-                )
-
-        except:
-
-            user = User.objects.create_user(
-                                username=username,
-            )
-            user.set_unusable_password()
-            user.save()
+        if user:
+            login(request, user)
 
             return render(
                     request,
                     "intro/intro.html",
                     context={},
             )
+        user = User.objects.create_user(
+                username=username,
+                password=password,
+        )
+
+        return render(
+                request,
+                "intro/intro.html",
+                context={},
+        )
