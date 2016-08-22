@@ -2,8 +2,5 @@ django==1.9.6
 dj-database-url
 geopy
 psycopg2
-<<<<<<< 6efb072aa2cf756c7c4d3738d5d5c8917dbc54a0
 requests
 djangorestframework
-=======
->>>>>>> uninstall django-postgres-copy
