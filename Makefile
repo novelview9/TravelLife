@@ -1,3 +1,3 @@
 migrate:
-	- python travellife/manage.py makemigrations tmap 
+	- python travellife/manage.py makemigrations tmap tour
 	- python travellife/manage.py migrate 

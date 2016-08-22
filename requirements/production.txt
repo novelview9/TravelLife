@@ -2,3 +2,5 @@ django==1.9.6
 dj-database-url
 geopy
 psycopg2
+requests
+djangorestframework
