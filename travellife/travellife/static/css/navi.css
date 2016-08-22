@@ -63,7 +63,7 @@ span.round-tab i{
     
 }
 .wizard li.active span.round-tab i{
-    color: rgba(0, 0, 0, 0.8);
+    color: rgba(0, 0, 0);
 }
 
 span.round-tab:hover {

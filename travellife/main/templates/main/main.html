@@ -5,8 +5,10 @@
  {% load staticfiles %}
 <link rel="stylesheet" href="{% static "css/main.css" %}">
 <link rel="stylesheet" href="{% static "css/navi.css" %}">
+<link rel='stylesheet' href="{% static "css/timepicki.css" %}">
+<link rel='stylesheet' href="{% static "css/grid.css" %}">
 <div class="container">
-    <div class="row">
+    <div class="row frame">
         <section class="navi">
         <div class="wizard">
             <div class="wizard-inner">
@@ -16,7 +18,7 @@
                     <li role="presentation" class="active">
                         <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
                             <span class="round-tab">
-                                <i class="glyphicon glyphicon-folder-open"></i>
+                                <i class="glyphicon glyphicon-time"></i>
                             </span>
                         </a>
                     </li>
@@ -24,14 +26,14 @@
                     <li role="presentation" class="disabled">
                         <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
                             <span class="round-tab">
-                                <i class="glyphicon glyphicon-pencil"></i>
+                                <i class="glyphicon glyphicon-picture"></i>
                             </span>
                         </a>
                     </li>
                     <li role="presentation" class="disabled">
                         <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
                             <span class="round-tab">
-                                <i class="glyphicon glyphicon-picture"></i>
+                                <i class="glyphicon glyphicon-map-marker"></i>
                             </span>
                         </a>
                     </li>
@@ -49,23 +51,176 @@
             <form role="form">
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="step1">
-                        <h3>Step 1</h3>
-                        <p>This is step 1</p>
+                        <h3>드라이브 시간을 입력해주세요.</h3>
+                        <input id='timepicker' type='text'name='timepicker'/>
                         <ul class="list-inline pull-right">
                             <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
                         </ul>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step2">
-                        <h3>Step 2</h3>
-                        <p>This is step 2</p>
-                        <ul class="list-inline pull-right">
+					<div class="row grid">
+						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+							<div class="hovereffect">
+								<img class="img-responsive" src="http://placehold.it/350x320" alt="">
+									<div class="overlay">
+										<h2>선택하기</h2>
+										<p class="icon-links">
+											<a href="#">
+												<span class="fa fa-twitter"></span>
+											</a>
+											<a href="#">
+												<span class="fa fa-facebook"></span>
+											</a>
+											<a href="#">
+												<span class="fa fa-instagram"></span>
+											</a>
+										</p>
+									</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+							<div class="hovereffect">
+								<img class="img-responsive" src="http://placehold.it/350x320" alt="">
+									<div class="overlay">
+										<h2>선택하기</h2>
+										<p class="icon-links">
+											<a href="#">
+												<span class="fa fa-twitter"></span>
+											</a>
+											<a href="#">
+												<span class="fa fa-facebook"></span>
+											</a>
+											<a href="#">
+												<span class="fa fa-instagram"></span>
+											</a>
+										</p>
+									</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+							<div class="hovereffect">
+								<img class="img-responsive" src="http://placehold.it/350x320" alt="">
+									<div class="overlay">
+										<h2>선택하기</h2>
+										<p class="icon-links">
+											<a href="#">
+												<span class="fa fa-twitter"></span>
+											</a>
+											<a href="#">
+												<span class="fa fa-facebook"></span>
+											</a>
+											<a href="#">
+												<span class="fa fa-instagram"></span>
+											</a>
+										</p>
+									</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+							<div class="hovereffect">
+								<img class="img-responsive" src="http://placehold.it/350x320" alt="">
+									<div class="overlay">
+										<h2>선택하기</h2>
+										<p class="icon-links">
+											<a href="#">
+												<span class="fa fa-twitter"></span>
+											</a>
+											<a href="#">
+												<span class="fa fa-facebook"></span>
+											</a>
+											<a href="#">
+												<span class="fa fa-instagram"></span>
+											</a>
+										</p>
+									</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+							<div class="hovereffect">
+								<img class="img-responsive" src="http://placehold.it/350x320" alt="">
+									<div class="overlay">
+										<h2>선택하기</h2>
+										<p class="icon-links">
+											<a href="#">
+												<span class="fa fa-twitter"></span>
+											</a>
+											<a href="#">
+												<span class="fa fa-facebook"></span>
+											</a>
+											<a href="#">
+												<span class="fa fa-instagram"></span>
+											</a>
+										</p>
+									</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+							<div class="hovereffect">
+								<img class="img-responsive" src="http://placehold.it/350x320" alt="">
+									<div class="overlay">
+										<h2>선택하기</h2>
+										<p class="icon-links">
+											<a href="#">
+												<span class="fa fa-twitter"></span>
+											</a>
+											<a href="#">
+												<span class="fa fa-facebook"></span>
+											</a>
+											<a href="#">
+												<span class="fa fa-instagram"></span>
+											</a>
+										</p>
+									</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+							<div class="hovereffect">
+								<img class="img-responsive" src="http://placehold.it/350x320" alt="">
+									<div class="overlay">
+										<h2>선택하기</h2>
+										<p class="icon-links">
+											<a href="#">
+												<span class="fa fa-twitter"></span>
+											</a>
+											<a href="#">
+												<span class="fa fa-facebook"></span>
+											</a>
+											<a href="#">
+												<span class="fa fa-instagram"></span>
+											</a>
+										</p>
+									</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+							<div class="hovereffect">
+								<img class="img-responsive" src="http://placehold.it/350x320" alt="">
+									<div class="overlay">
+										<h2>선택하기</h2>
+										<p class="icon-links">
+											<a href="#">
+												<span class="fa fa-twitter"></span>
+											</a>
+											<a href="#">
+												<span class="fa fa-facebook"></span>
+											</a>
+											<a href="#">
+												<span class="fa fa-instagram"></span>
+											</a>
+										</p>
+									</div>
+							</div>
+						</div>
+					</div>
+						<ul class="list-inline pull-right">
+
                             <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
                             <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
                         </ul>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step3">
                         <h3>Step 3</h3>
-                        <p>This is step 3</p>
+						<img class="img-responsive" src="http://developer.naver.com/wiki/attach/Tutorial_JavaScript/img_mapapi.png" alt="">
                         <ul class="list-inline pull-right">
                             <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
                             <li><button type="button" class="btn btn-default next-step">Skip</button></li>
@@ -86,5 +241,8 @@
 {% endblock %}
 
 {% block customJs %}
+<script src="https://cdn.jsdelivr.net/jquery.typeit/4.2.3/typeit.min.js"></script>
 <script src="{% static "js/navi.js" %}"></script>
+<script src="{% static "js/timepicki.js" %}"></script>
+<script src="{% static "js/timepickirun.js" %}"></script>
 {% endblock %}
