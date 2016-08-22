@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>간단한 지도 표시하기</title>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    <script src="https://apis.skplanetx.com/tmap/js?version=1&format=javascript&appKey=f192ba50-f7d1-3b05-9973-0cd29e84c8e0"></script>
+</head>
+<body>
+
+<h1>T Map Test</h1>
+<p>{{ distance}}m</p>
+
+<div id="map_div"></div>
+
+<script>
+//초기화 함수
+$( document ).ready(function() {
+    initTmap();
+    searchRoute();
+});
+function initTmap(){
+    centerLL = new Tmap.LonLat(14145677.4, 4511257.6);
+    map = new Tmap.Map({div:'map_div',
+                        width:'100%', 
+                        height:'400px',
+                        transitionEffect:"resize",
+                        animation:true
+                    }); 
+    searchRoute();
+};
+//경로 정보 로드
+function searchRoute(){
+    var routeFormat = new Tmap.Format.KML({extractStyles:true, extractAttributes:true});
+//    var startX = 14129105.461214;
+//    var startY = 4517042.1926406;
+//    var endX = 14135591.321771959;
+//    var endY = 4518111.822510956;
+    var startX = 126.98217734415019;
+    var startY = 37.56468648536046;
+    var endX = 129.07579349764512;
+    var endY = 37.17883196265564;
+    var reqCoordType = "WGS84GEO";
+    var urlStr = "https://apis.skplanetx.com/tmap/routes?version=1&format=xml";
+    urlStr += "&reqCoordType="+reqCoordType;
+    urlStr += "&startX="+startX;
+    urlStr += "&startY="+startY;
+    urlStr += "&endX="+endX;
+    urlStr += "&endY="+endY;
+    urlStr += "&appKey={{ api_key }}";
+    var prtcl = new Tmap.Protocol.HTTP({
+                                        url: urlStr,
+                                        format:routeFormat
+                                        });
+    var routeLayer = new Tmap.Layer.Vector("route", {protocol:prtcl, strategies:[new Tmap.Strategy.Fixed()]});
+    routeLayer.events.register("featuresadded", routeLayer, onDrawnFeatures);
+    map.addLayer(routeLayer);
+}
+//경로 그리기 후 해당영역으로 줌
+function onDrawnFeatures(e){
+    map.zoomToExtent(this.getDataExtent());
+}
+</script>
+</body>
+</html>
