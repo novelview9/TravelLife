@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+ {% load staticfiles %}
+<link rel="stylesheet" href="{% static "css/intro.css" %}">
+<video autoplay loop muted id="background">
+    <source src="{% static "media/intro.mp4" %}" type="video/mp4">
+</video>
+<div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+
+          <div class="inner cover">
+            <h1 class="cover-heading"></h1>
+            <p class="lead">Travelife는 원하는 드라이브 시간 입력만으로,<br>최적의 드라이브 코스 및 여행지 추천을 돕는 서비스입니다. <br>지금 Travelife를 통해 최고의 드라이브를 경험하세요.</p>
+            <form action="{% url "intro" %}" method="POST">
+              {% csrf_token %}
+              <input type="text" name="username" placeholder="차량번호">
+              <input type="submit" value="Go!">
+            </form>
+            </div>
+        </div>
+
+      </div>
+
+    </div>
+{% endblock %}
+
+{% block customJs %}
+<script src="https://cdn.jsdelivr.net/jquery.typeit/4.2.3/typeit.min.js"></script>
+
+<script src="{% static "js/typeIt.js" %}"></script>
+{% endblock %}

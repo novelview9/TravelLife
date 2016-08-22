@@ -4,6 +4,8 @@ from . import views
 
 from tmap.views import *
 from tour.views import *
+from intro import views
+from django.conf import settings
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
