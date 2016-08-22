@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'travellife',
     'tmap',
+    'tour',
 ]
 
 MIDDLEWARE = [
