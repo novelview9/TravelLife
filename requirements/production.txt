@@ -6,3 +6,5 @@ requests
 djangorestframework
 celery[redis]
 flower
+honcho
+gunicorn
