@@ -1,5 +1,6 @@
 import os
 import json
+
 import requests
 
 from tour.models import TouristSpotData
