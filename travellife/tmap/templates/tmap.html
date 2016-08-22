@@ -11,7 +11,9 @@
 <body>
 
 <h1>T Map Test</h1>
-<p>{{ distance}}m</p>
+<p>distance: {{ distance}}m</p>
+<p>middle: {{ middle }}</p>
+<p>real_time: {{ real }}</p>
 
 <div id="map_div"></div>
 {% for station in charging_stations %}
@@ -19,6 +21,10 @@
 <ul>
     <li>address: {{ station.address}}</li>
 </ul>
+{% endfor %}
+
+{% for distance in distances %}
+<p>{{ distance }}</p>
 {% endfor %}
 
 <script>

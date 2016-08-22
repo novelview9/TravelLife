@@ -1,1 +1,1 @@
-from .tmap import tmap
+from .tmap import TmapView
