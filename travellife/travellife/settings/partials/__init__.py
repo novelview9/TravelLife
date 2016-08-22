@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'tmap',
     'tour',
     'intro',
+    'main',
 ]
 
 MIDDLEWARE = [
