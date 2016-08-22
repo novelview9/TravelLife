@@ -8,7 +8,7 @@ from intro.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^tmap/$', tmap),
+    url(r'^tmap/$', TmapView.as_view()),
     url(r'^tour/$', CreateAPIView.as_view()),
     url(r'^', IntroView.as_view(), name="intro"),
     url(r'^address/$', AddressToPointView.as_view(), name="address"),
