@@ -20,6 +20,13 @@ class TouristSpotData(models.Model):
     latitude = models.FloatField()
 
     longitude = models.FloatField()
+    latitude = models.CharField(
+        max_length=64,
+    )
+
+    longitude = models.CharField(
+        max_length=64,
+    )
 
     image_url = models.URLField(
         max_length=200,
