@@ -3,3 +3,4 @@ dj-database-url
 geopy
 psycopg2
 requests
+djangorestframework
