@@ -3,8 +3,9 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth import login
 
+
 class IntroView(View):
-    
+
     def get(self, request, *args, **kwargs):
 
         return render(
@@ -13,12 +14,10 @@ class IntroView(View):
                 context={},
         )
 
-    
     def post(self, request, *args, **kwargs):
         username = request.POST.get("username")
-        try :
+        try:
             user = User.objects.get(username=username)
-            from IPython import embed;embed() 
 
             if user:
                 login(request, user)
@@ -28,7 +27,7 @@ class IntroView(View):
                         "intro/intro.html",
                         context={},
                 )
-            
+
         except:
 
             user = User.objects.create_user(
@@ -36,7 +35,7 @@ class IntroView(View):
             )
             user.set_unusable_password()
             user.save()
-            
+
             return render(
                     request,
                     "intro/intro.html",
