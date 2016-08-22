@@ -4,3 +4,7 @@ geopy
 psycopg2
 requests
 djangorestframework
+celery[redis]
+flower
+honcho
+gunicorn
