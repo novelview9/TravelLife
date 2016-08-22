@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^tmap/$', tmap),
     url(r'^tour/$', CreateAPIView.as_view()),
+    url(r'^address/$', AddressToPointView.as_view(), name="address"),
 ]
