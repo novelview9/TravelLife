@@ -1,7 +1,7 @@
 from django.views.generic import View
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from django.contrib.auth import login
+from django.contrib.auth import authenticate, login
 
 
 class IntroView(View):
