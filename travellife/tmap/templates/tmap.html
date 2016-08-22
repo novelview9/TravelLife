@@ -17,15 +17,12 @@
 
 <div id="map_div"></div>
 
-<form action="{% url "address" %}" method="POST">
-{% csrf_token %}
 <input type="text" id="sample4_postcode" placeholder="우편번호">
 <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
 <input type="text" name="address_1" id="sample4_roadAddress" placeholder="도로명주소">
 <input type="text" id="sample4_jibunAddress" placeholder="지번주소">
 <span id="guide" style="color:#999"></span>
-<input type="submit" value="좌표찾기"><br>
-</form>
+<input id="search_location" type="submit" value="좌표찾기"><br>
 
 {% for station in charging_stations %}
 <a class="station" data-latitude="{{ station.latitude }}" data-longitude="{{ station.longitude }}">name: {{ station.name }}</a>
@@ -50,15 +47,51 @@ $( document ).ready(function() {
         initTmap();
         searchRoute(latitude, longitude);
     });
+
+    $("#search_location").click(function() {
+        var address = $("#sample4_roadAddress").val();
+        var data={
+            address_1: address
+        };
+        $.ajax({
+                type: "POST",
+                url: "/address/",
+                data: data,
+                success: function(data) {
+                    console.log(data);
+                    var latitude = data.latitude;
+                    var longitude = data.longitude;
+
+                    var lonlat = new Tmap.LonLat(longitude, latitude);
+                    lonlat = lonlat.transform("EPSG:4326", "EPSG:3857");
+
+                    var markers = new Tmap.Layer.Markers( "MarkerLayer" );
+                    map.addLayer(markers);
+                     
+                    var size = new Tmap.Size(24,38);
+                    var offset = new Tmap.Pixel(-(size.w/2), -size.h);
+                    var icon = new Tmap.Icon('https://developers.skplanetx.com/upload/tmap/marker/pin_b_m_a.png', size, offset);  
+                       
+                    var marker = new Tmap.Marker(lonlat, icon);
+                    markers.addMarker(marker);
+                    map.setCenter(lonlat,15);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+            return false;
+
+    });
 });
 function initTmap(){
-    centerLL = new Tmap.LonLat(14145677.4, 4511257.6);
     map = new Tmap.Map({div:'map_div',
                         width:'100%', 
                         height:'400px',
                         transitionEffect:"resize",
                         animation:true
                     }); 
+    center = new Tmap.LonLat(127.0631412, 37.5150341);
 };
 
 function removeTmap(){
