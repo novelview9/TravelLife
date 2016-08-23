@@ -23,8 +23,10 @@
 <input type="text" id="sample4_jibunAddress" placeholder="지번주소">
 <span id="guide" style="color:#999"></span>
 <input id="search_location" type="submit" value="좌표찾기"><br>
+<input type="hidden" id="latitude">
+<input type="hidden" id="longitude">
 
-<select class="form-control">
+<select id="select" class="form-control">
    <option value="60">1시간</option>
    <option value="90">1시간 30분</option>
    <option value="120">2시간</option>
@@ -35,6 +37,7 @@
    <option value="270">4시간 30분</option>
    <option value="300">5시간</option>
 </select>
+<button id="search_spots">검색</button>
 
 {% for station in charging_stations %}
 <a class="station" data-latitude="{{ station.latitude }}" data-longitude="{{ station.longitude }}">name: {{ station.name }}</a>
@@ -60,6 +63,32 @@ $( document ).ready(function() {
         searchRoute(latitude, longitude);
     });
 
+    $("#search_spots").click(function() {
+        var minutes = $("#select option:selected").val();
+        var longitude = $("#longitude").val();
+        var latitude = $("#latitude").val();
+        console.log(minutes);
+        console.log(longitude);
+        console.log(latitude);
+        var data={
+            startX: longitude,
+            startY: latitude,
+            preferred_time: minutes, 
+        };
+        $.ajax({
+                type: "POST",
+                url: "/possiblespot/",
+                data: data,
+                success: function(data) {
+                    console.log(data);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+            return false;
+    });
+
     $("#search_location").click(function() {
         var address = $("#sample4_roadAddress").val();
         var data={
@@ -73,6 +102,8 @@ $( document ).ready(function() {
                     console.log(data);
                     var latitude = data.latitude;
                     var longitude = data.longitude;
+                    $('#latitude').val(latitude);
+                    $('#longitude').val(longitude);
 
                     var lonlat = new Tmap.LonLat(longitude, latitude);
                     lonlat = lonlat.transform("EPSG:4326", "EPSG:3857");
