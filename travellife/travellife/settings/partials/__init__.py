@@ -140,10 +140,10 @@ CELERY_ACCEPT_CONTENT = ['pickle', 'json']
 
 CELERYBEAT_SCHEDULE = {
     'update-tour-model': {
-        'task': 'tour.tasks.update_tour_model.UpdateTourModelTask',
+        'task': 'tour.tasks.update_model.UpdateTourModelTask',
         'schedule': crontab(
-            hour=21,
-            minute=0,
+            hour=13,
+            minute=5,
         ),
     },
 }
