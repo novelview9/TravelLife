@@ -1,0 +1,12 @@
+.share_box{
+    position:fixed;
+    width:50px;
+    top:5%;
+    left:5%;
+    border:3px solid #a1a1a1;
+    background:#FFF;
+    padding:15px;
+    -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+}

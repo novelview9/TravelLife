@@ -27,7 +27,7 @@ class IntroView(View):
 
             return render(
                     request,
-                    "intro/intro.html",
+                    "main/main.html",
                     context={},
             )
         user = User.objects.create_user(
@@ -37,6 +37,6 @@ class IntroView(View):
 
         return render(
                 request,
-                "intro/intro.html",
+                "main/main.html",
                 context={},
         )
