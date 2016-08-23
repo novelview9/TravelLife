@@ -7,6 +7,9 @@ from tour.models import TouristSpotData
 
 
 def update_tour_model():
+
+    TouristSpotData.objects.all().delete()
+
     tour_api_key = os.environ.get("TOUR_API_KEY")
     app_name = "travelife"
     keys = ["12", "14"]

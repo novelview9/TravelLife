@@ -13,4 +13,4 @@ def sort_tourist_spot_datas(startX, startY):
         spot_data_tuple = (spot_data.id, distance)
         spot_data_tuple_array.append(spot_data_tuple)
     sorted_spot_data_tuple_array = sorted(spot_data_tuple_array, key=lambda x: x[1])
-    return sorted_spot_data_tuple_array
+    return sorted_spot_data_tuple_array[:100]

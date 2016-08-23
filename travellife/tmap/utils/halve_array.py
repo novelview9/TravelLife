@@ -3,7 +3,7 @@ from tour.models import TouristSpotData
 
 
 def halve_array(startX, startY, tupple_array, preferred_time):
-    if len(tupple_array) < 50:
+    if len(tupple_array) < 100:
         return tupple_array
     mid = int(len(tupple_array)/2)
     mid_spot_id = tupple_array[mid][0]

@@ -1,5 +1,3 @@
-from django.conf import settings
-
 from celery import Task
 
 from tour.utils.update_model import update_tour_model
