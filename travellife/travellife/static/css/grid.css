@@ -27,6 +27,8 @@
 .hovereffect img {
     display: block;
     position: relative;
+    height: 100%;
+    width: 100%;
     -webkit-transition: -webkit-transform 0.35s;
     transition: transform 0.35s;
 }

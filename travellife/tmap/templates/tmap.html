@@ -10,45 +10,9 @@
 </head>
 <body>
 
-<h1>T Map Test</h1>
-<p>distance: {{ distance}}m</p>
-<p>middle: {{ middle }}</p>
-<p>real_time: {{ real }}</p>
 
 <div id="map_div"></div>
 
-<input type="text" id="sample4_postcode" placeholder="우편번호">
-<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-<input type="text" name="address_1" id="sample4_roadAddress" placeholder="도로명주소">
-<input type="text" id="sample4_jibunAddress" placeholder="지번주소">
-<span id="guide" style="color:#999"></span>
-<input id="search_location" type="submit" value="좌표찾기"><br>
-<input type="hidden" id="latitude">
-<input type="hidden" id="longitude">
-
-<select id="select" class="form-control">
-   <option value="60">1시간</option>
-   <option value="90">1시간 30분</option>
-   <option value="120">2시간</option>
-   <option value="150">2시간 30분</option>
-   <option value="180">3시간</option>
-   <option value="210">3시간 30분</option>
-   <option value="240">4시간</option>
-   <option value="270">4시간 30분</option>
-   <option value="300">5시간</option>
-</select>
-<button id="search_spots">검색</button>
-
-{% for station in charging_stations %}
-<a class="station" data-latitude="{{ station.latitude }}" data-longitude="{{ station.longitude }}">name: {{ station.name }}</a>
-<ul>
-    <li>address: {{ station.address}}</li>
-</ul>
-{% endfor %}
-
-{% for distance in distances %}
-<p>{{ distance }}</p>
-{% endfor %}
 
 <script>
 //초기화 함수
@@ -130,13 +94,22 @@ $( document ).ready(function() {
 function initTmap(){
     map = new Tmap.Map({div:'map_div',
                         width:'100%', 
-                        height:'400px',
+                        height:'800px',
                         transitionEffect:"resize",
                         animation:true
                     }); 
     center = new Tmap.LonLat(127.0631412, 37.5150341);
     center.transform("EPSG:4326", "EPSG:3857");
     map.setCenter(center);
+
+    var startX1 = 126.98217734415019;
+    var startY1 = 37.56468648536046;
+    var endX1 = 126.8255692;
+    var endY1 = 37.4889823;
+    var endX2 = 126.9270347;
+    var endY2 = 37.4946756;
+    searchRoute(startX1, startY1, endX1 , endY1);
+    searchRoute(endX1, endY1, endX2, endY2);
 };
 
 function removeTmap(){
@@ -144,14 +117,12 @@ function removeTmap(){
 };
 
 //경로 정보 로드
-function searchRoute(endX, endY){
+function searchRoute(startX, startY, endX, endY){
     var routeFormat = new Tmap.Format.KML({extractStyles:true, extractAttributes:true});
     //var startX = 14129105.461214;
     //var startY = 4517042.1926406;
     //var endX = 14135591.321771959;
     //var endY = 4518111.822510956;
-    var startX = 126.98217734415019;
-    var startY = 37.56468648536046;
     //var endX = 129.07579349764512;
     //var endY = 37.17883196265564;
     var reqCoordType = "WGS84GEO";

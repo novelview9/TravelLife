@@ -142,8 +142,8 @@ CELERYBEAT_SCHEDULE = {
     'update-tour-model': {
         'task': 'tour.tasks.update_model.UpdateTourModelTask',
         'schedule': crontab(
-            hour=13,
-            minute=5,
+            hour=14,
+            minute=8,
         ),
     },
 }
